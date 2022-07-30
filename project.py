@@ -1,11 +1,14 @@
-from cProfile import label
 import os
 import time
-from turtle import goto
 from tabulate import tabulate
 import pyodbc
 
-con = pyodbc.connect('Driver={SQL SERVER}; SERVER=DESKTOP-AVT89QG; DATABASE=students; Trusted_Connection:yes;')
+# Step1: First you need to setup your SQL Server then open SQL Management Tool 18 
+# Step2: in this tool use need to check SERVER with this query [select @@SERVERNAME;]
+# Step3: Create database with this query [create database your_database_name;] then you have successfully created database
+# Step4: then use this query on SQL Management tool to start program [use your_database_name;]
+# Step5 execute these query then start your Student Mangement Panel
+con = pyodbc.connect('Driver={SQL SERVER}; SERVER=Your-Computer-ServerName; DATABASE=YourDatabaseName; Trusted_Connection:yes;')
 cursor = con.cursor()
 
 # Creating table using sql queries 
@@ -190,3 +193,6 @@ def main():
         else:
             print("ERROR: server connection has been expired!")
 main()
+# This program is being prepared by Kamran Ahsan itself
+# From Scratch to user-friendly database project
+# Use all function and these function are 100% working just connect your SQL server First
