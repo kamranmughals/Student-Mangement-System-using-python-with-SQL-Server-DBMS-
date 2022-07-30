@@ -1,9 +1,8 @@
-import decimal
+from cProfile import label
 import os
 import time
-from tkinter import CENTER
+from turtle import goto
 from tabulate import tabulate
-from venv import create
 import pyodbc
 
 con = pyodbc.connect('Driver={SQL SERVER}; SERVER=DESKTOP-AVT89QG; DATABASE=students; Trusted_Connection:yes;')
@@ -16,6 +15,7 @@ def CreateTable():
     check = cursor.fetchall()
     if check:
         print("Table existed!")
+        
     else:
         print("Do you want to create Student Table? -> (y/n): ")
         choice = str(input(""))
@@ -40,14 +40,14 @@ def CreateTable():
             exit()
 # get data from user to fill-up table in sql server
 def getTableData():
-            os.system("cls")
+            # os.system("cls")
             student_id = int(input("1. Enter StudentID: "))
             checkID = "select student_id from Student"
             cursor.execute(checkID)
             row = [items[0] for items in cursor.fetchall()]
             if student_id in row: 
                 print("This student id is already existed!, try to add another-one")
-                student_id = int(input("1. Enter StudentID: "))
+                getTableData()
             else:
                 student_name = str(input("2. Enter StudentName: ")) 
                 student_age = str(input("3. Enter StudentAGE: "))
@@ -57,8 +57,16 @@ def getTableData():
                 student_roll_number = str(input("7. Enter StudentROLL#: "))
                 student_city =str(input("8. Enter City: "))
                 student_registrationNo = str(input("9. Enter Registration#: "))
+                # cursor.execute("select student_registrationNo from Student")
+                # regis = [items[0] for items in cursor.fetchall()]
+                # print(regis)
+                # label .begin
+                # if student_registrationNo in regis:
+                #             print("This student Registraton_NO# is already existed!, try to add another-one")
+                #             goto .begin
+                # else:
                 cursor.execute("INSERT INTO Student VALUES(?, ?, ?, ?, ?, ?,?,?,?)", student_id, student_name, student_age
-                ,student_address, student_phone_number, student_father_name, student_roll_number, student_city, student_registrationNo)
+                            ,student_address, student_phone_number, student_father_name, student_roll_number, student_city, student_registrationNo)
                 cursor.commit()
                 print("\nRow effected!\n")
 # Display all record to check data of a paticular student
@@ -136,7 +144,7 @@ def DeleteByID():
                     cursor.execute("DELETE FROM Student WHERE student_id = ?", student_id)
                     cursor.commit()
                     ShowData()
-                    print("Studet has been removed from our administration system!")
+                    print("\nStudent has been removed from our administration system!\n")
             else:
                 print("\nNo record found against this student_id, please try to enter relevent ID, contact administrator!.\n")
 
@@ -158,6 +166,7 @@ def main():
         print(" +>  7. Drop Table in DataBase")
         choice = int(input("==> Choice: "))
         if(choice == 1):
+            os.system("cls")
             getTableData()
             os.system("pause")
         elif choice == 2:
