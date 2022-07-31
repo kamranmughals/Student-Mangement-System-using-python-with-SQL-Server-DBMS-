@@ -81,7 +81,7 @@ def UpdateTable():
             cursor.execute(checkID)
             row = [items[0] for items in cursor.fetchall()]
             if student_id in row:
-                print("\n Note: our administration system allows only these attributes to update such as:\n")
+                print("\n Note: our administration system allow only these attribute to update such as:\n")
                 print("1. Student Re-Name")
                 print("2. Student Phone-Number#")
                 print("3. Student ID-Number#\n")
