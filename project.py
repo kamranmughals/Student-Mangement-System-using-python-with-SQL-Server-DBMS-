@@ -60,14 +60,6 @@ def getTableData():
                 student_roll_number = str(input("7. Enter StudentROLL#: "))
                 student_city =str(input("8. Enter City: "))
                 student_registrationNo = str(input("9. Enter Registration#: "))
-                # cursor.execute("select student_registrationNo from Student")
-                # regis = [items[0] for items in cursor.fetchall()]
-                # print(regis)
-                # label .begin
-                # if student_registrationNo in regis:
-                #             print("This student Registraton_NO# is already existed!, try to add another-one")
-                #             goto .begin
-                # else:
                 cursor.execute("INSERT INTO Student VALUES(?, ?, ?, ?, ?, ?,?,?,?)", student_id, student_name, student_age
                             ,student_address, student_phone_number, student_father_name, student_roll_number, student_city, student_registrationNo)
                 cursor.commit()
