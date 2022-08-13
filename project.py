@@ -8,7 +8,7 @@ import pyodbc
 # Step3: Create database with this query [create database your_database_name;] then you have successfully created database
 # Step4: then use this query on SQL Management tool to start program [use your_database_name;]
 # Step5 execute these query then start your Student Mangement Panel
-con = pyodbc.connect('Driver={SQL SERVER}; SERVER=Your-Computer-ServerName; DATABASE=YourDatabaseName; Trusted_Connection:yes;')
+con = pyodbc.connect('Driver={SQL SERVER}; SERVER=DESKTOP-AVT89QG; DATABASE=students; Trusted_Connection:yes;')
 cursor = con.cursor()
 
 # Creating table using sql queries 
